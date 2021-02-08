@@ -16,8 +16,6 @@ class FakeAndroidTestRepository : TasksRepository {
 
     private var shouldReturnError = false
 
-
-
     fun setReturnError(value: Boolean) {
         shouldReturnError = value
     }

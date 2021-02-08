@@ -30,6 +30,7 @@ import com.example.android.architecture.blueprints.todoapp.data.source.TasksRepo
 import kotlinx.coroutines.launch
 
 
+@Suppress("UNCHECKED_CAST")
 class TasksViewModelFactory (private val tasksRepository: TasksRepository
 ) : ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel> create(modelClass: Class<T>) =

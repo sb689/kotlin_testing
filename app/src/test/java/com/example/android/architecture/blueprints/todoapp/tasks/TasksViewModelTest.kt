@@ -32,7 +32,6 @@ class TasksViewModelTest{
         tasksRepository.addTasks(task1, task2, task3)
 
         tasksViewModel = TasksViewModel(tasksRepository)
-
     }
 
     @Test

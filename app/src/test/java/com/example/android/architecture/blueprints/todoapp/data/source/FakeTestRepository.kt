@@ -22,7 +22,8 @@ class FakeTestRepository : TasksRepository {
 
     override fun observeTasks(): LiveData<Result<List<Task>>> {
         runBlocking {
-            refreshTasks()}
+            refreshTasks()
+        }
             return observableTasks
     }
 
@@ -32,6 +33,11 @@ class FakeTestRepository : TasksRepository {
             tasksServiceData[task.id] = task
         }
         runBlocking { refreshTasks() }
+    }
+
+    override suspend fun completeTask(task: Task) {
+        val completedTask = Task(task.title, task.description, true, task.id)
+        tasksServiceData[task.id] = completedTask
     }
 
     override suspend fun refreshTask(taskId: String) {
@@ -50,9 +56,7 @@ class FakeTestRepository : TasksRepository {
         TODO("Not yet implemented")
     }
 
-    override suspend fun completeTask(task: Task) {
-        TODO("Not yet implemented")
-    }
+
 
     override suspend fun completeTask(taskId: String) {
         TODO("Not yet implemented")

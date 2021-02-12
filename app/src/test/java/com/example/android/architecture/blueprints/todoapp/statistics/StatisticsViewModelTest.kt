@@ -31,6 +31,7 @@ class StatisticsViewModelTest {
         statisticsViewModel = StatisticsViewModel(tasksRepository)
     }
 
+    @ExperimentalCoroutinesApi
     @Test
     fun loadTasks_loading() {
         mainCoroutineRule.pauseDispatcher()
@@ -39,6 +40,16 @@ class StatisticsViewModelTest {
         mainCoroutineRule.resumeDispatcher()
 
         assertThat(statisticsViewModel.dataLoading.getOrAwaitValue(), `is`(false))
+    }
+
+    @Test
+    fun loadStatisticsWhenTasksAreUnavailable_callErrorToDisplay() {
+
+        tasksRepository.setReturnError(true)
+        statisticsViewModel.refresh()
+
+        assertThat(statisticsViewModel.empty.getOrAwaitValue(), `is`(true))
+        assertThat(statisticsViewModel.error.getOrAwaitValue(), `is` (true))
     }
 
 }

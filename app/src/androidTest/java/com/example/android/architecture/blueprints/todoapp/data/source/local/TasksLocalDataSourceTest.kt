@@ -70,7 +70,7 @@ class TasksLocalDataSourceTest{
         assertThat(result.data.isCompleted, `is`(false))
     }
 
-    
+
     @Test
     fun completeTask_retrievedTaskIsComplete() = runBlocking{
 

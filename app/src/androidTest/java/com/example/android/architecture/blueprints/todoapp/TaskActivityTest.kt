@@ -100,7 +100,7 @@ class TaskActivityTest {
 
         // 2. Add an active task by clicking on the FAB and saving a new task.
         onView(withId(R.id.add_task_fab)).perform(click())
-        onView(withId(R.id.add_task_title_edit_text)).perform(typeText("adding TITLE"))
+        onView(withId(R.id.add_task_title_edit_text)).perform(typeText("adding TITLE"), closeSoftKeyboard())
         onView(withId(R.id.add_task_description_edit_text)).perform(typeText("adding DESCRIPTION"))
         onView(withId(R.id.save_task_fab)).perform(click())
 
@@ -111,6 +111,8 @@ class TaskActivityTest {
         onView(withId(R.id.task_detail_title_text)).check(matches(withText("adding TITLE")))
 
         // 4. Click delete task in menu.
+        onView(withId(R.id.menu_filter)).perform(click())
+        onView(withText(R.string.nav_all)).perform(click())
         onView(withId(R.id.menu_delete)).perform(click())
         // 5. Verify it was deleted.
         onView(withText("adding TITLE")).check(doesNotExist())
